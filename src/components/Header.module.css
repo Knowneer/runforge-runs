@@ -1,0 +1,69 @@
+.header {
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  padding: 14px 20px;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoIcon {
+  width: 34px;
+  height: 34px;
+  background-color: var(--navy-primary);
+  color: #ffffff;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cloudSvg {
+  width: 20px;
+  height: 20px;
+}
+
+.brandName {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy-primary);
+  letter-spacing: -0.02em;
+}
+
+.divider {
+  color: var(--border-color);
+  font-size: 18px;
+}
+
+.pageName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    flex-wrap: wrap;
+  }
+  .pageName, .divider {
+    display: none;
+  }
+}

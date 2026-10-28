@@ -1,0 +1,112 @@
+.loaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 20px;
+  gap: 14px;
+  user-select: none;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoBox {
+  width: 44px;
+  height: 44px;
+  background-color: var(--navy-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(11, 22, 44, 0.16);
+  animation: pulseBox 2.2s infinite ease-in-out;
+}
+
+.mainCloud {
+  width: 26px;
+  height: 26px;
+  color: #ffffff;
+  animation: floatMainCloud 2.2s infinite ease-in-out;
+}
+
+.brandTitle {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--navy-primary);
+  letter-spacing: -0.02em;
+}
+
+.loadingSub {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.loadingText {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}
+
+.cloudsDots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.miniCloud {
+  width: 14px;
+  height: 14px;
+  color: var(--navy-primary);
+  opacity: 0.2;
+  animation: cloudPop 1.4s infinite ease-in-out;
+}
+
+.cloud1 {
+  animation-delay: 0s;
+}
+
+.cloud2 {
+  animation-delay: 0.25s;
+}
+
+.cloud3 {
+  animation-delay: 0.5s;
+}
+
+@keyframes pulseBox {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes floatMainCloud {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2.5px);
+  }
+}
+
+@keyframes cloudPop {
+  0%, 80%, 100% {
+    opacity: 0.2;
+    transform: translateY(1px) scale(0.85);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px) scale(1.15);
+  }
+}

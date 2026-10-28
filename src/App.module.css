@@ -1,0 +1,28 @@
+.appLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+.pageHeader {
+  margin-bottom: 22px;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--navy-primary);
+}
+
+.pageSubtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}

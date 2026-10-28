@@ -1,0 +1,51 @@
+.filtersBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.searchContainer {
+  flex: 1 1 280px;
+  max-width: 420px;
+}
+
+.statusGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filterBtn {
+  padding: 7px 12px;
+  font-size: 13px;
+}
+
+.badgeCount {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 99px;
+  background-color: var(--bg-subtle);
+  color: var(--text-muted);
+}
+
+.badgeActive {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+
+
+@media (max-width: 640px) {
+  .searchContainer {
+    max-width: 100%;
+  }
+  .statusGroup {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+}

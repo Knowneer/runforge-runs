@@ -1,0 +1,52 @@
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.myInput {
+  width: 100%;
+  padding: 9px 34px 9px 36px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-main);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.myInput::placeholder {
+  color: var(--text-muted);
+}
+
+.myInput:focus {
+  border-color: var(--navy-primary);
+  box-shadow: 0 0 0 3px rgba(11, 22, 44, 0.08);
+}
+
+.clearBtn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 4px;
+}
+
+.clearBtn:hover {
+  color: var(--text-main);
+}

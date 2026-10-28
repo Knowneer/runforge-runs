@@ -1,0 +1,49 @@
+.myBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.myBtn:hover {
+  border-color: var(--navy-primary);
+  background-color: var(--bg-subtle);
+}
+
+
+.active {
+  background-color: var(--navy-primary) !important;
+  color: #ffffff !important;
+  border-color: var(--navy-primary) !important;
+}
+
+.primary {
+  background-color: var(--navy-primary);
+  color: #ffffff;
+  border-color: var(--navy-primary);
+}
+
+.primary:hover {
+  background-color: var(--navy-hover);
+}
+
+.ghost {
+  background: transparent;
+  border-color: transparent;
+}
+
+.ghost:hover {
+  background: var(--bg-subtle);
+  border-color: transparent;
+}
