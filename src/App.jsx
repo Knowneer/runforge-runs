@@ -13,8 +13,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedStatus, setSelectedStatus] = useState('all');
+  const [searchQuery, setSearchQuery] = useState(() => {
+    return new URLSearchParams(window.location.search).get('q') || '';
+  });
+  const [selectedStatus, setSelectedStatus] = useState(() => {
+    return new URLSearchParams(window.location.search).get('status') || 'all';
+  });
+  const [sortBy, setSortBy] = useState(() => {
+    return new URLSearchParams(window.location.search).get('sort') || 'newest';
+  });
   const [selectedRun, setSelectedRun] = useState(null);
 
   const loadRuns = useCallback(async (shouldFail = false) => {
@@ -34,7 +41,19 @@ function App() {
     loadRuns(false);
   }, [loadRuns]);
 
-  // Подсчёт количества для бейджей на кнопках фильтра
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (selectedStatus !== 'all') params.set('status', selectedStatus);
+    if (searchQuery.trim()) params.set('q', searchQuery.trim());
+    if (sortBy !== 'newest') params.set('sort', sortBy);
+
+    const qs = params.toString();
+    const newUrl = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+    window.history.replaceState(null, '', newUrl);
+  }, [selectedStatus, searchQuery, sortBy]);
+
+
   const statusCounts = useMemo(() => {
     const counts = { all: runs.length, queued: 0, running: 0, succeeded: 0, failed: 0 };
     runs.forEach((r) => {
@@ -43,9 +62,8 @@ function App() {
     return counts;
   }, [runs]);
 
-  // Совместная работа поиска и фильтрации по статусу
   const filteredRuns = useMemo(() => {
-    return runs.filter((run) => {
+    const filtered = runs.filter((run) => {
       const matchesStatus = selectedStatus === 'all' || run.status === selectedStatus;
       const query = searchQuery.trim().toLowerCase();
       const matchesSearch =
@@ -54,11 +72,28 @@ function App() {
         run.repository.toLowerCase().includes(query);
       return matchesStatus && matchesSearch;
     });
-  }, [runs, selectedStatus, searchQuery]);
+
+    return [...filtered].sort((a, b) => {
+      if (sortBy === 'newest') {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      }
+      if (sortBy === 'oldest') {
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      }
+      if (sortBy === 'duration-desc') {
+        return (b.durationSeconds ?? -1) - (a.durationSeconds ?? -1);
+      }
+      if (sortBy === 'duration-asc') {
+        return (a.durationSeconds ?? Infinity) - (b.durationSeconds ?? Infinity);
+      }
+      return 0;
+    });
+  }, [runs, selectedStatus, searchQuery, sortBy]);
 
   const handleResetFilters = () => {
     setSearchQuery('');
     setSelectedStatus('all');
+    setSortBy('newest');
   };
 
   return (
@@ -82,6 +117,8 @@ function App() {
           selectedStatus={selectedStatus}
           onStatusChange={setSelectedStatus}
           counts={statusCounts}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
         />
 
         {isLoading ? (

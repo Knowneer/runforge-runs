@@ -1,7 +1,5 @@
-
-import React from 'react';
-import MyInput from '../UI/input/MyInput';
 import MyButton from '../UI/button/MyButton';
+import MyInput from '../UI/input/MyInput';
 import classes from './Filters.module.css';
 
 const STATUS_OPTIONS = [
@@ -12,7 +10,15 @@ const STATUS_OPTIONS = [
   { value: 'failed', label: 'Failed' },
 ];
 
-const Filters = ({ searchQuery, onSearchChange, selectedStatus, onStatusChange, counts = {} }) => {
+const Filters = ({
+  searchQuery,
+  onSearchChange,
+  selectedStatus,
+  onStatusChange,
+  counts = {},
+  sortBy,
+  onSortChange
+}) => {
   return (
     <section className={classes.filtersBar} aria-label="Фильтры запусков">
       <div className={classes.searchContainer}>
@@ -23,6 +29,20 @@ const Filters = ({ searchQuery, onSearchChange, selectedStatus, onStatusChange, 
           onChange={(e) => onSearchChange(e.target.value)}
           onClear={() => onSearchChange('')}
         />
+      </div>
+
+      <div className={classes.sortContainer}>
+        <select
+          value={sortBy}
+          onChange={(e) => onSortChange(e.target.value)}
+          className={classes.sortSelect}
+          aria-label="Сортировка запусков"
+        >
+          <option value="newest">Сначала новые</option>
+          <option value="oldest">Сначала старые</option>
+          <option value="duration-desc">По длительности (убыв.)</option>
+          <option value="duration-asc">По длительности (возр.)</option>
+        </select>
       </div>
 
       <div className={classes.statusGroup} role="group" aria-label="Фильтр по статусу">

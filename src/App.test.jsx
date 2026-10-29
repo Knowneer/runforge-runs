@@ -1,4 +1,3 @@
-// @vitest-environment jsdom
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -40,9 +39,7 @@ describe('Runforge Runs Dashboard', () => {
 		render(<App />);
 		await waitFor(() => expect(screen.getByText('Auth refactor')).toBeInTheDocument());
 
-		// Ищем кнопку фильтра по тексту внутри группы фильтров (или используем querySelector / getAllByRole)
 		const filterButtons = screen.getAllByRole('button', { name: /Succeeded/i });
-		// Берём первую кнопку (это кнопка фильтра сверху, а не карточка)
 		fireEvent.click(filterButtons[0]);
 
 		expect(screen.getByText('Fix checkout tests')).toBeInTheDocument();
